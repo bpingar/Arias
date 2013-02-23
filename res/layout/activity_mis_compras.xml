@@ -5,13 +5,12 @@
     android:orientation="vertical"
     tools:context=".MisComprasActivity" >
 
-    <TextView
+    <TextView android:id="@+id/titulo_mis_compras"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/background_light"
         android:gravity="center"
         android:padding="@dimen/largePadding"
-        android:text="@string/mis_compras"
         android:textColor="@color/ocean"
         android:textSize="25sp"
         android:textStyle="bold" />

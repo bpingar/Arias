@@ -16,19 +16,19 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/nombre_producto_item"
+            android:id="@+id/nombre_producto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/numero_unidades_item"
+            android:id="@+id/numero_unidades"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/fecha_compra_item"
+            android:id="@+id/fecha_compra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />

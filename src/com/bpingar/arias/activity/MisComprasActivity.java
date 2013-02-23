@@ -2,16 +2,17 @@ package com.bpingar.arias.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bpingar.arias.R;
 import com.bpingar.arias.adapter.CompraAdapter;
-import com.bpingar.arias.model.Compra;
 
 public class MisComprasActivity extends ListActivity implements OnClickListener {
 
@@ -25,6 +26,8 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mis_compras);
 
+		saveUser();
+
 		final Arias arias = (Arias) getApplication();
 
 		final Button botonAnadirCompra = (Button) findViewById(R.id.anadirCompra);
@@ -33,6 +36,18 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 		misComprasAdapter = new CompraAdapter(this,
 				android.R.layout.simple_list_item_1, arias.getMisCompras());
 		setListAdapter(misComprasAdapter);
+	}
+
+	private void saveUser() {
+		final SharedPreferences preferences = getSharedPreferences(
+				Arias.PREFERENCIAS, MODE_PRIVATE);
+		final SharedPreferences.Editor editor = preferences.edit();
+		editor.putString(Arias.USUARIO, "bpingar");
+		editor.commit();
+
+		final TextView tituloMisCompras = (TextView) findViewById(R.id.titulo_mis_compras);
+		tituloMisCompras.setText(getString(R.string.compras_usuario,
+				preferences.getString(Arias.USUARIO, "-")));
 	}
 
 	@Override
@@ -62,12 +77,7 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 		switch (requestCode) {
 		case _NUEVA_COMPRA_GRABADA:
 			if (resultCode == RESULT_OK) {
-				final Compra miNuevaCompra = (Compra) data.getExtras()
-						.getSerializable(Arias.COMPRA);
-				arias.getMisCompras().add(miNuevaCompra);
 				misComprasAdapter.notifyDataSetChanged();
-				Toast.makeText(this, R.string.nueva_compra_guardada_OK,
-						Toast.LENGTH_SHORT).show();
 			} else if (resultCode == RESULT_CANCELED) {
 				Toast.makeText(this, R.string.nueva_compra_guardada_error,
 						Toast.LENGTH_SHORT).show();

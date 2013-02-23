@@ -5,13 +5,12 @@
     android:orientation="vertical"
     tools:context=".NuevaCompraActivity" >
 
-    <TextView
+    <TextView android:id="@+id/titulo_nueva_compra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/background_light"
         android:gravity="center"
         android:padding="@dimen/largePadding"
-        android:text="@string/nueva_compra"
         android:textColor="@color/ocean"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -28,6 +27,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:padding="@dimen/mediumPadding"
+            android:labelFor="@+id/nombre_producto"
             android:text="@string/nombre_producto" />
 
         <EditText
@@ -49,6 +49,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:padding="@dimen/mediumPadding"
+            android:labelFor="@+id/numero_unidades"
             android:text="@string/numero_unidades" />
 
         <EditText
@@ -70,6 +71,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:padding="@dimen/mediumPadding"
+            android:labelFor="@+id/fecha_compra"
             android:text="@string/fecha_compra" />
 
         <EditText
