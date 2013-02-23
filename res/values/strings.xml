@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Arias</string>
+    <string name="anadir_compra">Añadir compra</string>
+    <string name="menu_settings">Settings</string>
+    <string name="nueva_compra">Nueva Compra</string>
+    <string name="title_activity_nueva_compra">NuevaCompraActivity</string>
+    <string name="nombre_producto">Nombre producto:</string>
+    <string name="numero_unidades">Nº de unidades:</string>
+    <string name="fecha_compra">Fecha de compra:</string>
+    <string name="guardar_compra">Guardar compra</string>
+    <string name="error_numero_unidades_entero_decimal">Debe introducir un número entero ó decimal en "Nº de unidades"</string>
+    <string name="error_fecha_compra_fecha_con_formato">Debe introducir una fecha con formato "dd/MM/yyyy" en "Fecha de compra"</string>
+    <string name="mis_compras">Mis Compras</string>
+    <string name="nueva_compra_guardada_OK">Nueva compra guardada correctamente</string>
+    <string name="nueva_compra_guardada_error">Nueva compra no guardada</string>
+
+</resources>
