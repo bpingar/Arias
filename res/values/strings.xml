@@ -5,7 +5,7 @@
     <string name="anadir_compra">Añadir compra</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_nueva_compra">NuevaCompraActivity</string>
-    <string name="nombre_producto">Nombre producto:</string>
+    <string name="producto">Producto:</string>
     <string name="numero_unidades">Nº de unidades:</string>
     <string name="fecha_compra">Fecha de compra:</string>
     <string name="guardar_compra">Guardar compra</string>

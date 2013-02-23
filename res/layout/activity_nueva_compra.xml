@@ -27,14 +27,13 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:padding="@dimen/mediumPadding"
-            android:labelFor="@+id/nombre_producto"
-            android:text="@string/nombre_producto" />
+            android:labelFor="@+id/producto"
+            android:text="@string/producto" />
 
-        <EditText
-            android:id="@+id/nombre_producto"
+        <Spinner 
+            android:id="@+id/producto"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:inputType="text" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <LinearLayout

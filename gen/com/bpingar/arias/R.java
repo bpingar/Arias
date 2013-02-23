@@ -30,9 +30,10 @@ public final class R {
         public static final int anadirCompra=0x7f090001;
         public static final int fecha_compra=0x7f090005;
         public static final int guardar_compra=0x7f090006;
-        public static final int menu_settings=0x7f090007;
-        public static final int nombre_producto=0x7f090003;
+        public static final int menu_settings=0x7f090008;
+        public static final int nombre_producto=0x7f090007;
         public static final int numero_unidades=0x7f090004;
+        public static final int producto=0x7f090003;
         public static final int titulo_mis_compras=0x7f090000;
         public static final int titulo_nueva_compra=0x7f090002;
     }
@@ -55,10 +56,10 @@ public final class R {
         public static final int fecha_compra=0x7f060006;
         public static final int guardar_compra=0x7f060007;
         public static final int menu_settings=0x7f060002;
-        public static final int nombre_producto=0x7f060004;
         public static final int nueva_compra_guardada_error=0x7f06000a;
         public static final int nueva_compra_usuario=0x7f06000b;
         public static final int numero_unidades=0x7f060005;
+        public static final int producto=0x7f060004;
         public static final int title_activity_nueva_compra=0x7f060003;
     }
     public static final class style {

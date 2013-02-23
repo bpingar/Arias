@@ -52,7 +52,6 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_mis_compras, menu);
 		return true;
 	}
@@ -61,8 +60,8 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 	public void onClick(final View v) {
 		switch (v.getId()) {
 		case R.id.anadirCompra:
-			final Intent intent = new Intent(this, NuevaCompraActivity.class);
-			startActivityForResult(intent, _NUEVA_COMPRA_GRABADA);
+			startActivityForResult(new Intent(this, NuevaCompraActivity.class),
+					_NUEVA_COMPRA_GRABADA);
 			break;
 
 		default:
@@ -73,7 +72,6 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 	@Override
 	protected void onActivityResult(final int requestCode,
 			final int resultCode, final Intent data) {
-		final Arias arias = (Arias) getApplication();
 		switch (requestCode) {
 		case _NUEVA_COMPRA_GRABADA:
 			if (resultCode == RESULT_OK) {
