@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bpingar.arias.R;
@@ -54,8 +53,11 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 	private void fijarTitulo() {
 		final SharedPreferences preferencias = getSharedPreferences(
 				Arias.PREFERENCIAS, MODE_PRIVATE);
-		final TextView tituloMisCompras = (TextView) findViewById(R.id.titulo_mis_compras);
-		tituloMisCompras.setText(getString(R.string.compras_usuario,
+		// final TextView tituloMisCompras = (TextView)
+		// findViewById(R.id.titulo_mis_compras);
+		// tituloMisCompras.setText(getString(R.string.compras_usuario,
+		// preferencias.getString(Arias.USUARIO, "-")));
+		setTitle(getString(R.string.compras_usuario,
 				preferencias.getString(Arias.USUARIO, "-")));
 	}
 
@@ -89,9 +91,8 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 			startActivity(new Intent(this, InformacionAriasActivity.class));
 			break;
 
-		case R.id.menu_settings:
-			Toast.makeText(this, R.string.menu_settings, Toast.LENGTH_SHORT)
-					.show();
+		case R.id.menu_preferencias:
+			startActivity(new Intent(this, PreferenciasActivity.class));
 			break;
 
 		default:

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <!--
     <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +14,7 @@
         android:textColor="@color/ocean"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:text="@string/menu_informacion_arias" />
+        android:text="@string/menu_informacion_arias" />    -->
 
     <ImageView
         android:layout_width="50dip"

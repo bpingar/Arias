@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
     <application
@@ -14,9 +14,7 @@
         android:icon="@drawable/logo_arias"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.bpingar.arias.activity.MisComprasActivity"
-            android:label="@string/app_name" >
+        <activity android:name="com.bpingar.arias.activity.MisComprasActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,11 +23,13 @@
         </activity>
         <activity
             android:name="com.bpingar.arias.activity.NuevaCompraActivity"
-            android:label="@string/app_name" >
+            android:label="@string/nueva_compra_usuario" >
         </activity>
         <activity
             android:name="com.bpingar.arias.activity.InformacionAriasActivity"
-            android:label="@string/app_name" >
+            android:label="@string/menu_informacion_arias" >
+        </activity>
+        <activity android:name="com.bpingar.arias.activity.PreferenciasActivity" >
         </activity>
     </application>
 

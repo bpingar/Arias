@@ -3,22 +3,34 @@ package com.bpingar.arias.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.bpingar.arias.R;
 
-public class InformacionAriasActivity extends Activity {
+public class PreferenciasActivity extends Activity {
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_informacion_arias);
+		getFragmentManager().beginTransaction()
+				.replace(android.R.id.content, new PreferenciasFragment())
+				.commit();
+	}
+
+	public static class PreferenciasFragment extends PreferenceFragment {
+		@Override
+		public void onCreate(final Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			addPreferencesFromResource(R.xml.preferencias);
+
+		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_informacion_arias, menu);
+		getMenuInflater().inflate(R.menu.preferencias, menu);
 		return true;
 	}
 

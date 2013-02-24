@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bpingar.arias.R;
@@ -50,8 +49,11 @@ public class NuevaCompraActivity extends Activity implements OnClickListener {
 	}
 
 	private void fijarTitulo() {
-		final TextView tituloNuevaCompra = (TextView) findViewById(R.id.titulo_nueva_compra);
-		tituloNuevaCompra.setText(getString(R.string.nueva_compra_usuario,
+		// final TextView tituloNuevaCompra = (TextView)
+		// findViewById(R.id.titulo_nueva_compra);
+		// tituloNuevaCompra.setText(getString(R.string.nueva_compra_usuario,
+		// preferencias.getString(Arias.USUARIO, "-")));
+		setTitle(getString(R.string.nueva_compra_usuario,
 				preferencias.getString(Arias.USUARIO, "-")));
 	}
 
@@ -68,9 +70,8 @@ public class NuevaCompraActivity extends Activity implements OnClickListener {
 			startActivity(new Intent(this, InformacionAriasActivity.class));
 			break;
 
-		case R.id.menu_settings:
-			Toast.makeText(this, R.string.menu_settings, Toast.LENGTH_SHORT)
-					.show();
+		case R.id.menu_preferencias:
+			startActivity(new Intent(this, PreferenciasActivity.class));
 			break;
 
 		default:
