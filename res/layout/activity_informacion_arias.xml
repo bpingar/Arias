@@ -20,6 +20,6 @@
         android:layout_height="50dip"
         android:layout_margin="6dip"
         android:contentDescription="@string/app_name"
-        android:src="@android:drawable/ic_menu_agenda" />
+        android:src="@drawable/logo_arias" />
 
 </LinearLayout>

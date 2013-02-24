@@ -4,10 +4,13 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,14 +23,12 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 	private static final int _NUEVA_COMPRA_GRABADA = 1;
 
 	private CompraAdapter misComprasAdapter;
-	private SharedPreferences preferencias;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mis_compras);
 
-		preferencias = getSharedPreferences(Arias.PREFERENCIAS, MODE_PRIVATE);
 		guardarUsuario();
 		fijarTitulo();
 
@@ -39,18 +40,40 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 		misComprasAdapter = new CompraAdapter(this,
 				android.R.layout.simple_list_item_1, arias.getMisCompras());
 		setListAdapter(misComprasAdapter);
+
+		registerForContextMenu(getListView());
 	}
 
 	private void guardarUsuario() {
-		final SharedPreferences.Editor editor = preferencias.edit();
+		final SharedPreferences.Editor editor = getSharedPreferences(
+				Arias.PREFERENCIAS, MODE_PRIVATE).edit();
 		editor.putString(Arias.USUARIO, "bpingar");
 		editor.commit();
 	}
 
 	private void fijarTitulo() {
+		final SharedPreferences preferencias = getSharedPreferences(
+				Arias.PREFERENCIAS, MODE_PRIVATE);
 		final TextView tituloMisCompras = (TextView) findViewById(R.id.titulo_mis_compras);
 		tituloMisCompras.setText(getString(R.string.compras_usuario,
 				preferencias.getString(Arias.USUARIO, "-")));
+	}
+
+	@Override
+	public void onCreateContextMenu(final ContextMenu menu, final View v,
+			final ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.add(R.string.borrar_compra);
+	}
+
+	@Override
+	public boolean onContextItemSelected(final MenuItem item) {
+		final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+		final Arias arias = (Arias) getApplication();
+		arias.getMisCompras().remove(info.position);
+		misComprasAdapter.notifyDataSetChanged();
+		return true;
 	}
 
 	@Override

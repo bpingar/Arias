@@ -11,7 +11,7 @@
     <application
         android:name="com.bpingar.arias.activity.Arias"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo_arias"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
