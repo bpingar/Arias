@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,15 +19,17 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 
 	private static final int _NUEVA_COMPRA_GRABADA = 1;
 
-	// private ArrayAdapter<String> misComprasAdapter;
 	private CompraAdapter misComprasAdapter;
+	private SharedPreferences preferencias;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mis_compras);
 
-		saveUser();
+		preferencias = getSharedPreferences(Arias.PREFERENCIAS, MODE_PRIVATE);
+		guardarUsuario();
+		fijarTitulo();
 
 		final Arias arias = (Arias) getApplication();
 
@@ -38,22 +41,40 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 		setListAdapter(misComprasAdapter);
 	}
 
-	private void saveUser() {
-		final SharedPreferences preferences = getSharedPreferences(
-				Arias.PREFERENCIAS, MODE_PRIVATE);
-		final SharedPreferences.Editor editor = preferences.edit();
+	private void guardarUsuario() {
+		final SharedPreferences.Editor editor = preferencias.edit();
 		editor.putString(Arias.USUARIO, "bpingar");
 		editor.commit();
+	}
 
+	private void fijarTitulo() {
 		final TextView tituloMisCompras = (TextView) findViewById(R.id.titulo_mis_compras);
 		tituloMisCompras.setText(getString(R.string.compras_usuario,
-				preferences.getString(Arias.USUARIO, "-")));
+				preferencias.getString(Arias.USUARIO, "-")));
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_mis_compras, menu);
 		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_arias:
+			startActivity(new Intent(this, InformacionAriasActivity.class));
+			break;
+
+		case R.id.menu_settings:
+			Toast.makeText(this, R.string.menu_settings, Toast.LENGTH_SHORT)
+					.show();
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

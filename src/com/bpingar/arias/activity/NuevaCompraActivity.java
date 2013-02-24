@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -25,13 +26,15 @@ import com.bpingar.arias.model.Producto;
 public class NuevaCompraActivity extends Activity implements OnClickListener {
 
 	private ArrayAdapter<Producto> productos;
+	private SharedPreferences preferencias;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nueva_compra);
 
-		recoverUser();
+		preferencias = getSharedPreferences(Arias.PREFERENCIAS, MODE_PRIVATE);
+		fijarTitulo();
 
 		final Spinner spinner = (Spinner) findViewById(R.id.producto);
 
@@ -46,20 +49,34 @@ public class NuevaCompraActivity extends Activity implements OnClickListener {
 		boton.setOnClickListener(this);
 	}
 
-	private void recoverUser() {
-		final SharedPreferences preferences = getSharedPreferences(
-				Arias.PREFERENCIAS, MODE_PRIVATE);
-
+	private void fijarTitulo() {
 		final TextView tituloNuevaCompra = (TextView) findViewById(R.id.titulo_nueva_compra);
 		tituloNuevaCompra.setText(getString(R.string.nueva_compra_usuario,
-				preferences.getString(Arias.USUARIO, "-")));
+				preferencias.getString(Arias.USUARIO, "-")));
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_nueva_compra, menu);
 		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_arias:
+			startActivity(new Intent(this, InformacionAriasActivity.class));
+			break;
+
+		case R.id.menu_settings:
+			Toast.makeText(this, R.string.menu_settings, Toast.LENGTH_SHORT)
+					.show();
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

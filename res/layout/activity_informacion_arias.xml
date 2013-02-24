@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:gravity="center"
+        android:padding="@dimen/largePadding"
+        android:textColor="@color/ocean"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="@string/menu_informacion_arias" />
+
+    <ImageView
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_margin="6dip"
+        android:contentDescription="@string/app_name"
+        android:src="@android:drawable/ic_menu_agenda" />
+
+</LinearLayout>
