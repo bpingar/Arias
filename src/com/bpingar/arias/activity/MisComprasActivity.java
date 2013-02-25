@@ -1,6 +1,7 @@
 package com.bpingar.arias.activity;
 
-import android.app.ListActivity;
+import java.util.List;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,12 +17,17 @@ import android.widget.Toast;
 
 import com.bpingar.arias.R;
 import com.bpingar.arias.adapter.CompraAdapter;
+import com.bpingar.arias.database.DatabaseHelper;
+import com.bpingar.arias.model.Compra;
+import com.j256.ormlite.android.apptools.OrmLiteBaseListActivity;
 
-public class MisComprasActivity extends ListActivity implements OnClickListener {
+public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
+		implements OnClickListener {
 
 	private static final int _NUEVA_COMPRA_GRABADA = 1;
 
 	private CompraAdapter misComprasAdapter;
+	private List<Compra> misCompras;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -36,8 +42,12 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 		final Button botonAnadirCompra = (Button) findViewById(R.id.anadirCompra);
 		botonAnadirCompra.setOnClickListener(this);
 
+		Toast.makeText(this, "Saved: " + getHelper().getCompraDAO().countOf(),
+				Toast.LENGTH_SHORT).show();
+
+		misCompras = getHelper().getCompraDAO().queryForAll();
 		misComprasAdapter = new CompraAdapter(this,
-				android.R.layout.simple_list_item_1, arias.getMisCompras());
+				android.R.layout.simple_list_item_1, misCompras);
 		setListAdapter(misComprasAdapter);
 
 		registerForContextMenu(getListView());
@@ -72,8 +82,9 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 	public boolean onContextItemSelected(final MenuItem item) {
 		final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
-		final Arias arias = (Arias) getApplication();
-		arias.getMisCompras().remove(info.position);
+		final Compra compra = misCompras.get(info.position);
+		getHelper().getCompraDAO().delete(compra);
+		misCompras.remove(compra);
 		misComprasAdapter.notifyDataSetChanged();
 		return true;
 	}
@@ -120,6 +131,8 @@ public class MisComprasActivity extends ListActivity implements OnClickListener 
 		switch (requestCode) {
 		case _NUEVA_COMPRA_GRABADA:
 			if (resultCode == RESULT_OK) {
+				misCompras.clear();
+				misCompras.addAll(getHelper().getCompraDAO().queryForAll());
 				misComprasAdapter.notifyDataSetChanged();
 			} else if (resultCode == RESULT_CANCELED) {
 				Toast.makeText(this, R.string.nueva_compra_guardada_error,

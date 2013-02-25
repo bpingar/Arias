@@ -3,7 +3,6 @@ package com.bpingar.arias.activity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,10 +18,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bpingar.arias.R;
+import com.bpingar.arias.database.DatabaseHelper;
 import com.bpingar.arias.model.Compra;
 import com.bpingar.arias.model.Producto;
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 
-public class NuevaCompraActivity extends Activity implements OnClickListener {
+public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
+		implements OnClickListener {
 
 	private ArrayAdapter<Producto> productos;
 	private SharedPreferences preferencias;
@@ -106,7 +108,9 @@ public class NuevaCompraActivity extends Activity implements OnClickListener {
 					new SimpleDateFormat("dd/MM/yyyy").parse(fechaCompra
 							.getText().toString()));
 
-			((Arias) getApplication()).getMisCompras().add(miNuevaCompra);
+			getHelper().getCompraDAO().create(miNuevaCompra);
+
+			// ((Arias) getApplication()).getMisCompras().add(miNuevaCompra);
 
 			Toast.makeText(
 					this,

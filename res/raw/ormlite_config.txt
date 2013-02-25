@@ -1,0 +1,23 @@
+#
+# generated on 2013/02/25 08:43:18
+#
+# --table-start--
+dataClass=com.bpingar.arias.model.Compra
+tableName=compra
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nombreProducto
+# --field-end--
+# --field-start--
+fieldName=numeroUnidades
+# --field-end--
+# --field-start--
+fieldName=fechaCompra
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
