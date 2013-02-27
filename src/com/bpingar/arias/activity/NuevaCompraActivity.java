@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,15 +26,13 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 		implements OnClickListener {
 
 	private ArrayAdapter<Producto> productos;
-	private SharedPreferences preferencias;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nueva_compra);
 
-		preferencias = getSharedPreferences(Arias.PREFERENCIAS, MODE_PRIVATE);
-		fijarTitulo();
+		establecerTitulo();
 
 		final Spinner spinner = (Spinner) findViewById(R.id.producto);
 
@@ -50,13 +47,9 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 		boton.setOnClickListener(this);
 	}
 
-	private void fijarTitulo() {
-		// final TextView tituloNuevaCompra = (TextView)
-		// findViewById(R.id.titulo_nueva_compra);
-		// tituloNuevaCompra.setText(getString(R.string.nueva_compra_usuario,
-		// preferencias.getString(Arias.USUARIO, "-")));
+	private void establecerTitulo() {
 		setTitle(getString(R.string.nueva_compra_usuario,
-				preferencias.getString(Arias.USUARIO, "-")));
+				((Arias) getApplication()).getUsuario()));
 	}
 
 	@Override

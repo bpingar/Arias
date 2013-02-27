@@ -29,7 +29,15 @@
             android:name="com.bpingar.arias.activity.InformacionAriasActivity"
             android:label="@string/menu_informacion_arias" >
         </activity>
+        <activity
+            android:name="com.bpingar.arias.activity.EstablecerUsuarioActivity"
+            android:label="@string/establecer_usuario" >
+        </activity>
         <activity android:name="com.bpingar.arias.activity.PreferenciasActivity" >
+        </activity>
+        <activity
+            android:name="com.bpingar.arias.activity.UsuariosActivity"
+            android:label="@string/title_activity_usuarios" >
         </activity>
     </application>
 

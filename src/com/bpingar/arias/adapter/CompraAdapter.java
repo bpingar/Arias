@@ -18,7 +18,6 @@ public class CompraAdapter extends ArrayAdapter<Compra> {
 	public CompraAdapter(final Context context, final int textViewResourceId,
 			final List<Compra> objects) {
 		super(context, textViewResourceId, objects);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

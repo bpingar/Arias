@@ -28,50 +28,73 @@ public final class R {
         public static final int logo_arias=0x7f020001;
     }
     public static final class id {
-        public static final int anadirCompra=0x7f0b0000;
-        public static final int fecha_compra=0x7f0b0003;
-        public static final int guardar_compra=0x7f0b0004;
-        public static final int menu_arias=0x7f0b0007;
-        public static final int menu_preferencias=0x7f0b0006;
-        public static final int nombre_producto=0x7f0b0005;
-        public static final int numero_unidades=0x7f0b0002;
-        public static final int producto=0x7f0b0001;
+        public static final int anadirCompra=0x7f0b0002;
+        public static final int establecer_usuario=0x7f0b0001;
+        public static final int fecha_compra=0x7f0b0005;
+        public static final int guardar_compra=0x7f0b0006;
+        public static final int id_usuario=0x7f0b0008;
+        public static final int menu_arias=0x7f0b000b;
+        public static final int menu_mis_compras=0x7f0b000e;
+        public static final int menu_preferencias=0x7f0b000a;
+        public static final int menu_usuario=0x7f0b000c;
+        public static final int menu_usuarios=0x7f0b000d;
+        public static final int nombre_producto=0x7f0b0007;
+        public static final int nombre_usuario=0x7f0b0009;
+        public static final int numero_unidades=0x7f0b0004;
+        public static final int producto=0x7f0b0003;
+        public static final int usuario=0x7f0b0000;
     }
     public static final class layout {
-        public static final int activity_informacion_arias=0x7f030000;
-        public static final int activity_mis_compras=0x7f030001;
-        public static final int activity_nueva_compra=0x7f030002;
-        public static final int compra_item=0x7f030003;
+        public static final int activity_establecer_usuario=0x7f030000;
+        public static final int activity_informacion_arias=0x7f030001;
+        public static final int activity_mis_compras=0x7f030002;
+        public static final int activity_nueva_compra=0x7f030003;
+        public static final int activity_usuarios=0x7f030004;
+        public static final int compra_item=0x7f030005;
+        public static final int usuario_item=0x7f030006;
     }
     public static final class menu {
         public static final int activity_informacion_arias=0x7f0a0000;
         public static final int activity_mis_compras=0x7f0a0001;
         public static final int activity_nueva_compra=0x7f0a0002;
-        public static final int preferencias=0x7f0a0003;
+        public static final int activity_usuarios=0x7f0a0003;
+        public static final int preferencias=0x7f0a0004;
     }
     public static final class raw {
         public static final int ormlite_config=0x7f050000;
     }
     public static final class string {
-        public static final int anadiendo_compra=0x7f08000f;
+        public static final int anadiendo_compra=0x7f080012;
         public static final int anadir_compra=0x7f080001;
         public static final int app_name=0x7f080000;
-        public static final int borrar_compra=0x7f080009;
-        public static final int compras_usuario=0x7f08000e;
-        public static final int error_fecha_compra_fecha_con_formato=0x7f08000b;
-        public static final int error_numero_unidades_entero_decimal=0x7f08000a;
-        public static final int fecha_compra=0x7f080007;
-        public static final int guardar_compra=0x7f080008;
-        public static final int hello_world=0x7f080010;
+        public static final int compras_usuario=0x7f080011;
+        public static final int eliminar_compra=0x7f08000c;
+        public static final int eliminar_compra_ok=0x7f08001e;
+        public static final int eliminar_usuario=0x7f08001b;
+        public static final int eliminar_usuario_no_posible=0x7f08001c;
+        public static final int eliminar_usuario_ok=0x7f08001d;
+        public static final int error_fecha_compra_fecha_con_formato=0x7f08000e;
+        public static final int error_numero_unidades_entero_decimal=0x7f08000d;
+        public static final int establecer_usuario=0x7f080016;
+        public static final int fecha_compra=0x7f08000a;
+        public static final int fijar_usuario=0x7f080017;
+        public static final int guardar_compra=0x7f08000b;
+        public static final int hello_world=0x7f080013;
+        public static final int menu_establecer_usuario=0x7f080004;
         public static final int menu_informacion_arias=0x7f080003;
+        public static final int menu_mis_compras=0x7f080006;
         public static final int menu_preferencias=0x7f080002;
-        public static final int nueva_compra_guardada_error=0x7f08000c;
-        public static final int nueva_compra_usuario=0x7f08000d;
-        public static final int numero_unidades=0x7f080006;
-        public static final int producto=0x7f080005;
-        public static final int title_activity_informacion_arias=0x7f080011;
-        public static final int title_activity_nueva_compra=0x7f080004;
-        public static final int title_activity_preferencias=0x7f080012;
+        public static final int menu_settings=0x7f080019;
+        public static final int menu_usuarios=0x7f080005;
+        public static final int nueva_compra_guardada_error=0x7f08000f;
+        public static final int nueva_compra_usuario=0x7f080010;
+        public static final int numero_unidades=0x7f080009;
+        public static final int producto=0x7f080008;
+        public static final int title_activity_informacion_arias=0x7f080014;
+        public static final int title_activity_nueva_compra=0x7f080007;
+        public static final int title_activity_preferencias=0x7f080015;
+        public static final int title_activity_usuarios=0x7f08001a;
+        public static final int usuario=0x7f080018;
     }
     public static final class style {
         /** 

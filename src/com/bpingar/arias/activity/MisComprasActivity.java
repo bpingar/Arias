@@ -19,12 +19,14 @@ import com.bpingar.arias.R;
 import com.bpingar.arias.adapter.CompraAdapter;
 import com.bpingar.arias.database.DatabaseHelper;
 import com.bpingar.arias.model.Compra;
+import com.bpingar.arias.model.Usuario;
 import com.j256.ormlite.android.apptools.OrmLiteBaseListActivity;
 
 public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		implements OnClickListener {
 
 	private static final int _NUEVA_COMPRA_GRABADA = 1;
+	private static final int _USUARIO_REGISTRADO = 2;
 
 	private CompraAdapter misComprasAdapter;
 	private List<Compra> misCompras;
@@ -34,16 +36,8 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mis_compras);
 
-		guardarUsuario();
-		fijarTitulo();
-
-		final Arias arias = (Arias) getApplication();
-
 		final Button botonAnadirCompra = (Button) findViewById(R.id.anadirCompra);
 		botonAnadirCompra.setOnClickListener(this);
-
-		Toast.makeText(this, "Saved: " + getHelper().getCompraDAO().countOf(),
-				Toast.LENGTH_SHORT).show();
 
 		misCompras = getHelper().getCompraDAO().queryForAll();
 		misComprasAdapter = new CompraAdapter(this,
@@ -51,31 +45,47 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		setListAdapter(misComprasAdapter);
 
 		registerForContextMenu(getListView());
+
+		precargarUsuario();
+		establecerTitulo();
 	}
 
-	private void guardarUsuario() {
-		final SharedPreferences.Editor editor = getSharedPreferences(
-				Arias.PREFERENCIAS, MODE_PRIVATE).edit();
-		editor.putString(Arias.USUARIO, "bpingar");
-		editor.commit();
-	}
-
-	private void fijarTitulo() {
+	private void precargarUsuario() {
 		final SharedPreferences preferencias = getSharedPreferences(
 				Arias.PREFERENCIAS, MODE_PRIVATE);
-		// final TextView tituloMisCompras = (TextView)
-		// findViewById(R.id.titulo_mis_compras);
-		// tituloMisCompras.setText(getString(R.string.compras_usuario,
-		// preferencias.getString(Arias.USUARIO, "-")));
-		setTitle(getString(R.string.compras_usuario,
-				preferencias.getString(Arias.USUARIO, "-")));
+
+		// final SharedPreferences.Editor editor = preferencias.edit();
+		// editor.putString(Arias.USUARIO, "");
+		// editor.commit();
+
+		final String nombreUsr = preferencias.getString(Arias.USUARIO, "");
+		if (nombreUsr.equals("")) {
+			startActivityForResult(new Intent(this,
+					EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
+		} else {
+			final List<Usuario> usuarios = getHelper().getUsuarioDAO()
+					.queryForEq("nombreUsuario", nombreUsr);
+			Usuario usuario;
+			if (!usuarios.isEmpty()) {
+				usuario = usuarios.get(0);
+				((Arias) getApplication()).setUsuario(usuario);
+			} else {
+				startActivityForResult(new Intent(this,
+						EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
+			}
+		}
+	}
+
+	private void establecerTitulo() {
+		setTitle(getString(R.string.compras_usuario, ((Arias) getApplication())
+				.getUsuario().getNombreUsuario()));
 	}
 
 	@Override
 	public void onCreateContextMenu(final ContextMenu menu, final View v,
 			final ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-		menu.add(R.string.borrar_compra);
+		menu.add(R.string.eliminar_compra);
 	}
 
 	@Override
@@ -86,6 +96,8 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		getHelper().getCompraDAO().delete(compra);
 		misCompras.remove(compra);
 		misComprasAdapter.notifyDataSetChanged();
+		Toast.makeText(this, R.string.eliminar_compra_ok, Toast.LENGTH_SHORT)
+				.show();
 		return true;
 	}
 
@@ -98,6 +110,15 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
+		case R.id.menu_usuario:
+			startActivityForResult(new Intent(this,
+					EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
+			break;
+
+		case R.id.menu_usuarios:
+			startActivity(new Intent(this, UsuariosActivity.class));
+			break;
+
 		case R.id.menu_arias:
 			startActivity(new Intent(this, InformacionAriasActivity.class));
 			break;
@@ -139,7 +160,12 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 						Toast.LENGTH_SHORT).show();
 			}
 			break;
-
+		case _USUARIO_REGISTRADO:
+			if (resultCode == RESULT_OK) {
+				// TODO rellenar lista con compras del usuario
+				establecerTitulo();
+				break;
+			}
 		default:
 			break;
 		}

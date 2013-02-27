@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.bpingar.arias.R;
 import com.bpingar.arias.model.Compra;
+import com.bpingar.arias.model.Usuario;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -16,9 +17,10 @@ import com.j256.ormlite.table.TableUtils;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	private static final String DATABASE_NAME = "Arias.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 3;
 
 	private RuntimeExceptionDao<Compra, Integer> compraDAO = null;
+	private RuntimeExceptionDao<Usuario, Integer> usuarioDAO = null;
 
 	public DatabaseHelper(final Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION,
@@ -30,6 +32,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			final ConnectionSource connectionSource) {
 		try {
 			TableUtils.createTable(connectionSource, Compra.class);
+			TableUtils.createTable(connectionSource, Usuario.class);
 		} catch (final SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
 			throw new RuntimeException(e);
@@ -42,6 +45,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			final int newVersion) {
 		try {
 			TableUtils.dropTable(connectionSource, Compra.class, true);
+			TableUtils.dropTable(connectionSource, Usuario.class, true);
 			onCreate(db, connectionSource);
 		} catch (final java.sql.SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't drop databases", e);
@@ -56,10 +60,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		return compraDAO;
 	}
 
+	public RuntimeExceptionDao<Usuario, Integer> getUsuarioDAO() {
+		if (usuarioDAO == null) {
+			usuarioDAO = getRuntimeExceptionDao(Usuario.class);
+		}
+		return usuarioDAO;
+	}
+
 	@Override
 	public void close() {
 		super.close();
 		compraDAO = null;
+		usuarioDAO = null;
 	}
-
 }
