@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -48,6 +49,23 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 
 		precargarUsuario();
 		establecerTitulo();
+		mostrarSaludo();
+	}
+
+	private void mostrarSaludo() {
+		final SharedPreferences general = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+
+		final boolean mostrar_saludo = general.getBoolean(
+				getString(R.string.saludo), false);
+		if (mostrar_saludo) {
+			Toast.makeText(
+					this,
+					general.getString(getString(R.string.texto_saludo),
+							getString(R.string.saludo_defecto)),
+					Toast.LENGTH_LONG).show();
+
+		}
 	}
 
 	private void precargarUsuario() {
