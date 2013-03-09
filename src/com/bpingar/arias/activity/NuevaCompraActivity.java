@@ -111,8 +111,7 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 							miNuevaCompra.getNombreProducto()),
 					Toast.LENGTH_SHORT).show();
 
-			final Intent intent = new Intent();
-			setResult(RESULT_OK, intent);
+			setResult(RESULT_OK, new Intent());
 			finish();
 		} catch (final NumberFormatException e) {
 			Log.e(Arias.APLICACION, e.getMessage());
