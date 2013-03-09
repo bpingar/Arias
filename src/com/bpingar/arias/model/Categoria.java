@@ -1,6 +1,9 @@
 package com.bpingar.arias.model;
 
-public class Categoria {
+import java.io.Serializable;
+
+public class Categoria implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String categoria;
 
 	public String getCategoria() {
