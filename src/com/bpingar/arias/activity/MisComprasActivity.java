@@ -77,7 +77,7 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		// editor.commit();
 
 		final String nombreUsr = preferencias.getString(Arias.USUARIO, "");
-		if (nombreUsr.equals("")) {
+		if ("".equals(nombreUsr)) {
 			startActivityForResult(new Intent(this,
 					EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
 		} else {

@@ -32,27 +32,26 @@ public class EstablecerUsuarioActivity extends
 		switch (v.getId()) {
 		case R.id.establecer_usuario:
 			final EditText nombreUsuario = (EditText) findViewById(R.id.usuario);
-			final String nombreUsr = nombreUsuario.getText().toString();
+			final String nombre = nombreUsuario.getText().toString();
 
 			final SharedPreferences.Editor editor = getSharedPreferences(
 					Arias.PREFERENCIAS, MODE_PRIVATE).edit();
-			editor.putString(Arias.USUARIO, nombreUsr);
+			editor.putString(Arias.USUARIO, nombre);
 			editor.commit();
 
 			final List<Usuario> usuarios = getHelper().getUsuarioDAO()
-					.queryForEq("nombreUsuario", nombreUsr);
+					.queryForEq("nombreUsuario", nombre);
 			Usuario usuario;
-			if (!usuarios.isEmpty()) {
-				usuario = usuarios.get(0);
-			} else {
-				usuario = new Usuario(nombreUsr);
+			if (usuarios.isEmpty()) {
+				usuario = new Usuario(nombre);
 				getHelper().getUsuarioDAO().create(usuario);
+			} else {
+				usuario = usuarios.get(0);
 			}
 
 			((Arias) getApplication()).setUsuario(usuario);
 
-			final Intent intent = new Intent();
-			setResult(RESULT_OK, intent);
+			setResult(RESULT_OK, new Intent());
 			finish();
 			break;
 		default:

@@ -1,6 +1,9 @@
 package com.bpingar.arias.model;
 
-public class Marca {
+import java.io.Serializable;
+
+public class Marca implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String marca;
 
 	public String getMarca() {
