@@ -80,6 +80,7 @@ public final class R {
         public static final int fijar_usuario=0x7f080017;
         public static final int guardar_compra=0x7f08000b;
         public static final int hello_world=0x7f080013;
+        public static final int hola=0x7f080026;
         public static final int introducir_saludo_inicial=0x7f080022;
         public static final int menu_establecer_usuario=0x7f080004;
         public static final int menu_informacion_arias=0x7f080003;

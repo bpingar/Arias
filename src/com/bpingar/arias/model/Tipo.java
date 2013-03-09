@@ -1,6 +1,9 @@
 package com.bpingar.arias.model;
 
-public class Tipo {
+import java.io.Serializable;
+
+public class Tipo implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Categoria categoria;
 	private Variedad variedad;
 	private Marca marca;

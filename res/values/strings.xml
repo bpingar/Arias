@@ -39,5 +39,6 @@
     <string name="saludo_defecto">Bienvenido a la aplicación Mis compras de Arias!!!!</string>
     <string name="texto_saludo">texto_saludo</string>
     <string name="saludo">saludo</string>
+    <string name="hola">Hola</string>
 
 </resources>
