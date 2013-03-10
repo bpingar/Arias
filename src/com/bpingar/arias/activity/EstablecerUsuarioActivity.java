@@ -3,18 +3,17 @@ package com.bpingar.arias.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.bpingar.arias.R;
-import com.bpingar.arias.database.DatabaseHelper;
 import com.bpingar.arias.model.Usuario;
-import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 
-public class EstablecerUsuarioActivity extends
-		OrmLiteBaseActivity<DatabaseHelper> implements OnClickListener {
+public class EstablecerUsuarioActivity extends MenuActivity implements
+		OnClickListener {
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -50,6 +49,16 @@ public class EstablecerUsuarioActivity extends
 			break;
 		default:
 			break;
+		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_usuario:
+			return false;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
 	}
 }

@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -17,13 +15,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bpingar.arias.R;
-import com.bpingar.arias.database.DatabaseHelper;
 import com.bpingar.arias.model.Compra;
 import com.bpingar.arias.model.Producto;
-import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 
-public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
-		implements OnClickListener {
+public class NuevaCompraActivity extends MenuActivity implements
+		OnClickListener {
 
 	private ArrayAdapter<Producto> productos;
 	protected static final int _USUARIO_REGISTRADO = 2;
@@ -54,45 +50,6 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu) {
-		getMenuInflater().inflate(R.menu.menu_base, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
-		switch (item.getItemId()) {
-
-		case R.id.menu_mis_compras:
-			startActivity(new Intent(this, MisComprasActivity.class));
-			break;
-
-		case R.id.menu_usuario:
-			Toast.makeText(
-					this,
-					"No es posible cambiar de usuario mientras graba una nueva compra",
-					Toast.LENGTH_SHORT).show();
-			break;
-
-		case R.id.menu_usuarios:
-			startActivity(new Intent(this, UsuariosActivity.class));
-			break;
-
-		case R.id.menu_arias:
-			startActivity(new Intent(this, InformacionAriasActivity.class));
-			break;
-
-		case R.id.menu_preferencias:
-			startActivity(new Intent(this, PreferenciasActivity.class));
-			break;
-
-		default:
-			break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
 	public void onClick(final View v) {
 		switch (v.getId()) {
 		case R.id.guardar_compra:
@@ -105,8 +62,6 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 
 	private void guardarCompra() {
 
-		// final EditText nombreProducto = (EditText)
-		// findViewById(R.id.nombre_producto);
 		final Spinner producto = (Spinner) findViewById(R.id.producto);
 		final EditText numeroUnidades = (EditText) findViewById(R.id.numero_unidades);
 		final EditText fechaCompra = (EditText) findViewById(R.id.fecha_compra);
@@ -120,8 +75,6 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 							.getText().toString()));
 
 			getHelper().getCompraDAO().create(miNuevaCompra);
-
-			// ((Arias) getApplication()).getMisCompras().add(miNuevaCompra);
 
 			Toast.makeText(
 					this,
