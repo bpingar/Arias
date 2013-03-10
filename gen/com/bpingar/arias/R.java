@@ -33,11 +33,11 @@ public final class R {
         public static final int fecha_compra=0x7f0b0005;
         public static final int guardar_compra=0x7f0b0006;
         public static final int id_usuario=0x7f0b0008;
-        public static final int menu_arias=0x7f0b000b;
-        public static final int menu_mis_compras=0x7f0b000e;
-        public static final int menu_preferencias=0x7f0b000a;
-        public static final int menu_usuario=0x7f0b000c;
-        public static final int menu_usuarios=0x7f0b000d;
+        public static final int menu_arias=0x7f0b000e;
+        public static final int menu_mis_compras=0x7f0b000a;
+        public static final int menu_preferencias=0x7f0b000d;
+        public static final int menu_usuario=0x7f0b000b;
+        public static final int menu_usuarios=0x7f0b000c;
         public static final int nombre_producto=0x7f0b0007;
         public static final int nombre_usuario=0x7f0b0009;
         public static final int numero_unidades=0x7f0b0004;
@@ -54,11 +54,7 @@ public final class R {
         public static final int usuario_item=0x7f030006;
     }
     public static final class menu {
-        public static final int activity_informacion_arias=0x7f0a0000;
-        public static final int activity_mis_compras=0x7f0a0001;
-        public static final int activity_nueva_compra=0x7f0a0002;
-        public static final int activity_usuarios=0x7f0a0003;
-        public static final int preferencias=0x7f0a0004;
+        public static final int menu_base=0x7f0a0000;
     }
     public static final class raw {
         public static final int ormlite_config=0x7f050000;
@@ -69,10 +65,11 @@ public final class R {
         public static final int app_name=0x7f080000;
         public static final int compras_usuario=0x7f080011;
         public static final int eliminar_compra=0x7f08000c;
-        public static final int eliminar_compra_ok=0x7f08001e;
+        public static final int eliminar_compra_ok=0x7f08001f;
         public static final int eliminar_usuario=0x7f08001b;
         public static final int eliminar_usuario_no_posible=0x7f08001c;
-        public static final int eliminar_usuario_ok=0x7f08001d;
+        public static final int eliminar_usuario_no_posible_tiene_compras=0x7f08001d;
+        public static final int eliminar_usuario_ok=0x7f08001e;
         public static final int error_fecha_compra_fecha_con_formato=0x7f08000e;
         public static final int error_numero_unidades_entero_decimal=0x7f08000d;
         public static final int establecer_usuario=0x7f080016;
@@ -80,24 +77,24 @@ public final class R {
         public static final int fijar_usuario=0x7f080017;
         public static final int guardar_compra=0x7f08000b;
         public static final int hello_world=0x7f080013;
-        public static final int hola=0x7f080026;
-        public static final int introducir_saludo_inicial=0x7f080022;
+        public static final int hola=0x7f080027;
+        public static final int introducir_saludo_inicial=0x7f080023;
         public static final int menu_establecer_usuario=0x7f080004;
         public static final int menu_informacion_arias=0x7f080003;
         public static final int menu_mis_compras=0x7f080006;
         public static final int menu_preferencias=0x7f080002;
         public static final int menu_settings=0x7f080019;
         public static final int menu_usuarios=0x7f080005;
-        public static final int mostrar_saludo_inicial=0x7f080021;
+        public static final int mostrar_saludo_inicial=0x7f080022;
         public static final int nueva_compra_guardada_error=0x7f08000f;
         public static final int nueva_compra_usuario=0x7f080010;
         public static final int numero_unidades=0x7f080009;
         public static final int producto=0x7f080008;
-        public static final int saludo=0x7f080025;
-        public static final int saludo_defecto=0x7f080023;
-        public static final int saludo_inicial=0x7f08001f;
-        public static final int texto_saludo=0x7f080024;
-        public static final int texto_saludo_inicial=0x7f080020;
+        public static final int saludo=0x7f080026;
+        public static final int saludo_defecto=0x7f080024;
+        public static final int saludo_inicial=0x7f080020;
+        public static final int texto_saludo=0x7f080025;
+        public static final int texto_saludo_inicial=0x7f080021;
         public static final int title_activity_informacion_arias=0x7f080014;
         public static final int title_activity_nueva_compra=0x7f080007;
         public static final int title_activity_preferencias=0x7f080015;

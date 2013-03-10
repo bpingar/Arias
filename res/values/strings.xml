@@ -30,6 +30,7 @@
     <string name="title_activity_usuarios">UsuariosActivity</string>
     <string name="eliminar_usuario">Eliminar usuario</string>
     <string name="eliminar_usuario_no_posible">No es posible borrar el usuario de la sesión</string>
+    <string name="eliminar_usuario_no_posible_tiene_compras">No es posible borrar el usuario. Primero debe borrar sus compras.</string>
     <string name="eliminar_usuario_ok">Usuario %s eliminado correctamente</string>
     <string name="eliminar_compra_ok">Compra eliminada correctamente</string>
     <string name="saludo_inicial">Saludo inicial</string>

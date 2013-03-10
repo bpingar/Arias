@@ -15,10 +15,13 @@ import android.widget.Toast;
 import com.bpingar.arias.R;
 import com.bpingar.arias.adapter.UsuarioAdapter;
 import com.bpingar.arias.database.DatabaseHelper;
+import com.bpingar.arias.model.Compra;
 import com.bpingar.arias.model.Usuario;
 import com.j256.ormlite.android.apptools.OrmLiteBaseListActivity;
 
 public class UsuariosActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
+
+	protected static final int _USUARIO_REGISTRADO = 2;
 
 	private UsuarioAdapter usuariosAdapter;
 	private List<Usuario> usuarios;
@@ -29,7 +32,7 @@ public class UsuariosActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
 		setContentView(R.layout.activity_usuarios);
 
 		usuarios = getHelper().getUsuarioDAO().queryForAll();
-		usuarios.remove(((Arias) getApplication()).getUsuario());
+		// usuarios.remove(((Arias) getApplication()).getUsuario());
 		usuariosAdapter = new UsuarioAdapter(this,
 				android.R.layout.simple_list_item_1, usuarios);
 		setListAdapter(usuariosAdapter);
@@ -55,21 +58,30 @@ public class UsuariosActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
 			Toast.makeText(this, R.string.eliminar_usuario_no_posible,
 					Toast.LENGTH_SHORT).show();
 		} else {
-			getHelper().getUsuarioDAO().delete(usuario);
-			usuarios.remove(usuario);
-			usuariosAdapter.notifyDataSetChanged();
-			Toast.makeText(
-					this,
-					getString(R.string.eliminar_usuario_ok,
-							usuario.getNombreUsuario()), Toast.LENGTH_SHORT)
-					.show();
+
+			final List<Compra> comprasUsuario = getHelper().getCompraDAO()
+					.queryForEq("usuarioId", usuario.getId());
+			if (comprasUsuario.isEmpty()) {
+				getHelper().getUsuarioDAO().delete(usuario);
+				usuarios.remove(usuario);
+				usuariosAdapter.notifyDataSetChanged();
+				Toast.makeText(
+						this,
+						getString(R.string.eliminar_usuario_ok,
+								usuario.getNombreUsuario()), Toast.LENGTH_SHORT)
+						.show();
+			} else {
+				Toast.makeText(this,
+						R.string.eliminar_usuario_no_posible_tiene_compras,
+						Toast.LENGTH_SHORT).show();
+			}
 		}
 		return true;
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_usuarios, menu);
+		getMenuInflater().inflate(R.menu.menu_base, menu);
 		return true;
 	}
 
@@ -78,6 +90,14 @@ public class UsuariosActivity extends OrmLiteBaseListActivity<DatabaseHelper> {
 		switch (item.getItemId()) {
 		case R.id.menu_mis_compras:
 			startActivity(new Intent(this, MisComprasActivity.class));
+			break;
+
+		case R.id.menu_usuario:
+			startActivityForResult(new Intent(this,
+					EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
+			break;
+
+		case R.id.menu_usuarios:
 			break;
 
 		case R.id.menu_arias:

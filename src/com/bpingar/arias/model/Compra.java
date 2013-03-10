@@ -14,6 +14,8 @@ public class Compra implements Serializable {
 	@DatabaseField(generatedId = true)
 	private Long id;
 	@DatabaseField
+	private Long usuarioId;
+	@DatabaseField
 	private String nombreProducto;
 	@DatabaseField
 	private Float numeroUnidades;
@@ -24,8 +26,9 @@ public class Compra implements Serializable {
 		super();
 	}
 
-	public Compra(final String nombreProducto, final Float numeroUnidades,
-			final Date fechaCompra) {
+	public Compra(final Long usuarioId, final String nombreProducto,
+			final Float numeroUnidades, final Date fechaCompra) {
+		this.usuarioId = usuarioId;
 		this.nombreProducto = nombreProducto;
 		this.numeroUnidades = numeroUnidades;
 		this.fechaCompra = fechaCompra;
@@ -37,6 +40,14 @@ public class Compra implements Serializable {
 
 	public void setId(final Long id) {
 		this.id = id;
+	}
+
+	public Long getUsuarioId() {
+		return usuarioId;
+	}
+
+	public void setUsuarioId(final Long usuarioId) {
+		this.usuarioId = usuarioId;
 	}
 
 	public String getNombreProducto() {

@@ -1,11 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-     <item
+    <item
         android:id="@+id/menu_mis_compras"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/menu_mis_compras"/>
-     
+    <item
+        android:id="@+id/menu_usuario"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_establecer_usuario"/>
+    <item
+        android:id="@+id/menu_usuarios"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/menu_usuarios"/>
     <item
         android:id="@+id/menu_preferencias"
         android:orderInCategory="100"
@@ -16,4 +25,5 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/menu_informacion_arias"/>
+
 </menu>

@@ -26,6 +26,7 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 		implements OnClickListener {
 
 	private ArrayAdapter<Producto> productos;
+	protected static final int _USUARIO_REGISTRADO = 2;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -54,13 +55,29 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_nueva_compra, menu);
+		getMenuInflater().inflate(R.menu.menu_base, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
+
+		case R.id.menu_mis_compras:
+			startActivity(new Intent(this, MisComprasActivity.class));
+			break;
+
+		case R.id.menu_usuario:
+			Toast.makeText(
+					this,
+					"No es posible cambiar de usuario mientras graba una nueva compra",
+					Toast.LENGTH_SHORT).show();
+			break;
+
+		case R.id.menu_usuarios:
+			startActivity(new Intent(this, UsuariosActivity.class));
+			break;
+
 		case R.id.menu_arias:
 			startActivity(new Intent(this, InformacionAriasActivity.class));
 			break;
@@ -95,7 +112,8 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 		final EditText fechaCompra = (EditText) findViewById(R.id.fecha_compra);
 
 		try {
-			final Compra miNuevaCompra = new Compra(producto.getSelectedItem()
+			final Compra miNuevaCompra = new Compra(((Arias) getApplication())
+					.getUsuario().getId(), producto.getSelectedItem()
 					.toString().toString(), Float.valueOf(numeroUnidades
 					.getText().toString()),
 					new SimpleDateFormat("dd/MM/yyyy").parse(fechaCompra
@@ -111,7 +129,9 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 							miNuevaCompra.getNombreProducto()),
 					Toast.LENGTH_SHORT).show();
 
-			setResult(RESULT_OK, new Intent());
+			final Intent intent = new Intent();
+			intent.putExtra("nuevaCompra", miNuevaCompra);
+			setResult(RESULT_OK, intent);
 			finish();
 		} catch (final NumberFormatException e) {
 			Log.e(Arias.APLICACION, e.getMessage());

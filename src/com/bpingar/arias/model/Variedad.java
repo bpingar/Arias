@@ -1,6 +1,11 @@
 package com.bpingar.arias.model;
 
-public class Variedad {
+import java.io.Serializable;
+
+public class Variedad implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private Categoria categoria;
 	private String variedad;
 

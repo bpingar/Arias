@@ -1,5 +1,6 @@
 package com.bpingar.arias.activity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
@@ -27,7 +28,7 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		implements OnClickListener {
 
 	private static final int _NUEVA_COMPRA_GRABADA = 1;
-	private static final int _USUARIO_REGISTRADO = 2;
+	protected static final int _USUARIO_REGISTRADO = 2;
 
 	private CompraAdapter misComprasAdapter;
 	private List<Compra> misCompras;
@@ -37,19 +38,24 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mis_compras);
 
+		precargarUsuario();
+		establecerTitulo();
+		mostrarSaludo();
+
 		final Button botonAnadirCompra = (Button) findViewById(R.id.anadirCompra);
 		botonAnadirCompra.setOnClickListener(this);
 
-		misCompras = getHelper().getCompraDAO().queryForAll();
+		if (((Arias) getApplication()).getUsuario().getId() != null) {
+			misCompras = getHelper().getCompraDAO().queryForEq("usuarioId",
+					((Arias) getApplication()).getUsuario().getId() + "");
+		} else {
+			misCompras = new ArrayList<Compra>();
+		}
 		misComprasAdapter = new CompraAdapter(this,
 				android.R.layout.simple_list_item_1, misCompras);
 		setListAdapter(misComprasAdapter);
 
 		registerForContextMenu(getListView());
-
-		precargarUsuario();
-		establecerTitulo();
-		mostrarSaludo();
 	}
 
 	private void mostrarSaludo() {
@@ -64,7 +70,6 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 					general.getString(getString(R.string.texto_saludo),
 							getString(R.string.saludo_defecto)),
 					Toast.LENGTH_LONG).show();
-
 		}
 	}
 
@@ -76,20 +81,17 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		// editor.putString(Arias.USUARIO, "");
 		// editor.commit();
 
-		final String nombreUsr = preferencias.getString(Arias.USUARIO, "");
-		if ("".equals(nombreUsr)) {
+		final String nombreUsuario = preferencias.getString(Arias.USUARIO, "");
+		if ("".equals(nombreUsuario)) {
 			startActivityForResult(new Intent(this,
 					EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
 		} else {
-			final List<Usuario> usuarios = getHelper().getUsuarioDAO()
-					.queryForEq("nombreUsuario", nombreUsr);
-			Usuario usuario;
-			if (!usuarios.isEmpty()) {
-				usuario = usuarios.get(0);
-				((Arias) getApplication()).setUsuario(usuario);
-			} else {
+			final Usuario usuario = buscarUsuario(nombreUsuario);
+			if (usuario == null) {
 				startActivityForResult(new Intent(this,
 						EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
+			} else {
+				((Arias) getApplication()).setUsuario(usuario);
 			}
 		}
 	}
@@ -120,14 +122,63 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 	}
 
 	@Override
+	public void onClick(final View v) {
+		switch (v.getId()) {
+		case R.id.anadirCompra:
+			startActivityForResult(new Intent(this, NuevaCompraActivity.class),
+					_NUEVA_COMPRA_GRABADA);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@Override
+	protected void onActivityResult(final int requestCode,
+			final int resultCode, final Intent data) {
+		switch (requestCode) {
+		case _NUEVA_COMPRA_GRABADA:
+			if (resultCode == RESULT_OK) {
+				final Compra nuevaCompra = (Compra) data
+						.getSerializableExtra("nuevaCompra");
+				misCompras.add(nuevaCompra);
+				misComprasAdapter.notifyDataSetChanged();
+			} else if (resultCode == RESULT_CANCELED) {
+				Toast.makeText(this, R.string.nueva_compra_guardada_error,
+						Toast.LENGTH_SHORT).show();
+			}
+			break;
+		case _USUARIO_REGISTRADO:
+			if (resultCode == RESULT_OK) {
+				misCompras.clear();
+				misCompras.addAll(getHelper().getCompraDAO().queryForEq(
+						"usuarioId",
+						((Arias) getApplication()).getUsuario().getId()));
+				misComprasAdapter.notifyDataSetChanged();
+				establecerTitulo();
+				break;
+			}
+		default:
+			break;
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_mis_compras, menu);
+		getMenuInflater().inflate(R.menu.menu_base, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
+
+		case R.id.menu_mis_compras:
+			// startActivity(new Intent(this, MisComprasActivity.class));
+			break;
+
 		case R.id.menu_usuario:
 			startActivityForResult(new Intent(this,
 					EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
@@ -151,43 +202,13 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public void onClick(final View v) {
-		switch (v.getId()) {
-		case R.id.anadirCompra:
-			startActivityForResult(new Intent(this, NuevaCompraActivity.class),
-					_NUEVA_COMPRA_GRABADA);
-			break;
-
-		default:
-			break;
+	public Usuario buscarUsuario(final String nombre) {
+		final List<Usuario> usuarios = getHelper().getUsuarioDAO().queryForEq(
+				"nombreUsuario", nombre);
+		Usuario usuario = null;
+		if (!usuarios.isEmpty()) {
+			usuario = usuarios.get(0);
 		}
+		return usuario;
 	}
-
-	@Override
-	protected void onActivityResult(final int requestCode,
-			final int resultCode, final Intent data) {
-		switch (requestCode) {
-		case _NUEVA_COMPRA_GRABADA:
-			if (resultCode == RESULT_OK) {
-				misCompras.clear();
-				misCompras.addAll(getHelper().getCompraDAO().queryForAll());
-				misComprasAdapter.notifyDataSetChanged();
-			} else if (resultCode == RESULT_CANCELED) {
-				Toast.makeText(this, R.string.nueva_compra_guardada_error,
-						Toast.LENGTH_SHORT).show();
-			}
-			break;
-		case _USUARIO_REGISTRADO:
-			if (resultCode == RESULT_OK) {
-				// TODO rellenar lista con compras del usuario
-				establecerTitulo();
-				break;
-			}
-		default:
-			break;
-		}
-		super.onActivityResult(requestCode, resultCode, data);
-	}
-
 }

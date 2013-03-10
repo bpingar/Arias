@@ -39,15 +39,20 @@ public class EstablecerUsuarioActivity extends
 			editor.putString(Arias.USUARIO, nombre);
 			editor.commit();
 
-			final List<Usuario> usuarios = getHelper().getUsuarioDAO()
-					.queryForEq("nombreUsuario", nombre);
-			Usuario usuario;
-			if (usuarios.isEmpty()) {
+			Usuario usuario = buscarUsuario(nombre);
+			if (usuario == null) {
 				usuario = new Usuario(nombre);
 				getHelper().getUsuarioDAO().create(usuario);
-			} else {
-				usuario = usuarios.get(0);
 			}
+			// final List<Usuario> usuarios = getHelper().getUsuarioDAO()
+			// .queryForEq("nombreUsuario", nombre);
+			// Usuario usuario;
+			// if (usuarios.isEmpty()) {
+			// usuario = new Usuario(nombre);
+			// getHelper().getUsuarioDAO().create(usuario);
+			// } else {
+			// usuario = usuarios.get(0);
+			// }
 
 			((Arias) getApplication()).setUsuario(usuario);
 
@@ -57,6 +62,16 @@ public class EstablecerUsuarioActivity extends
 		default:
 			break;
 		}
+	}
+
+	public Usuario buscarUsuario(final String nombre) {
+		final List<Usuario> usuarios = getHelper().getUsuarioDAO().queryForEq(
+				"nombreUsuario", nombre);
+		Usuario usuario = null;
+		if (!usuarios.isEmpty()) {
+			usuario = usuarios.get(0);
+		}
+		return usuario;
 	}
 
 }

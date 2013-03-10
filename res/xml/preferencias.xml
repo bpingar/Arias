@@ -11,6 +11,7 @@
         </CheckBoxPreference>
 
         <EditTextPreference
+            android:dependency="@string/saludo"
             android:key="@string/texto_saludo"
             android:summary="@string/introducir_saludo_inicial"
             android:title="@string/texto_saludo_inicial" />
