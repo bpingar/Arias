@@ -86,7 +86,8 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 			startActivityForResult(new Intent(this,
 					EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
 		} else {
-			final Usuario usuario = buscarUsuario(nombreUsuario);
+			final Usuario usuario = new GestionUsuarios(this)
+					.buscarUsuario(nombreUsuario);
 			if (usuario == null) {
 				startActivityForResult(new Intent(this,
 						EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);
@@ -200,15 +201,5 @@ public class MisComprasActivity extends OrmLiteBaseListActivity<DatabaseHelper>
 			break;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	public Usuario buscarUsuario(final String nombre) {
-		final List<Usuario> usuarios = getHelper().getUsuarioDAO().queryForEq(
-				"nombreUsuario", nombre);
-		Usuario usuario = null;
-		if (!usuarios.isEmpty()) {
-			usuario = usuarios.get(0);
-		}
-		return usuario;
 	}
 }

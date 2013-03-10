@@ -1,7 +1,5 @@
 package com.bpingar.arias.activity;
 
-import java.util.List;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,20 +37,11 @@ public class EstablecerUsuarioActivity extends
 			editor.putString(Arias.USUARIO, nombre);
 			editor.commit();
 
-			Usuario usuario = buscarUsuario(nombre);
+			Usuario usuario = new GestionUsuarios(this).buscarUsuario(nombre);
 			if (usuario == null) {
 				usuario = new Usuario(nombre);
 				getHelper().getUsuarioDAO().create(usuario);
 			}
-			// final List<Usuario> usuarios = getHelper().getUsuarioDAO()
-			// .queryForEq("nombreUsuario", nombre);
-			// Usuario usuario;
-			// if (usuarios.isEmpty()) {
-			// usuario = new Usuario(nombre);
-			// getHelper().getUsuarioDAO().create(usuario);
-			// } else {
-			// usuario = usuarios.get(0);
-			// }
 
 			((Arias) getApplication()).setUsuario(usuario);
 
@@ -63,15 +52,4 @@ public class EstablecerUsuarioActivity extends
 			break;
 		}
 	}
-
-	public Usuario buscarUsuario(final String nombre) {
-		final List<Usuario> usuarios = getHelper().getUsuarioDAO().queryForEq(
-				"nombreUsuario", nombre);
-		Usuario usuario = null;
-		if (!usuarios.isEmpty()) {
-			usuario = usuarios.get(0);
-		}
-		return usuario;
-	}
-
 }

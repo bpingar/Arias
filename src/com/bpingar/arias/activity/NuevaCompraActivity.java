@@ -50,7 +50,7 @@ public class NuevaCompraActivity extends OrmLiteBaseActivity<DatabaseHelper>
 
 	private void establecerTitulo() {
 		setTitle(getString(R.string.nueva_compra_usuario,
-				((Arias) getApplication()).getUsuario()));
+				((Arias) getApplication()).getUsuario().getNombreUsuario()));
 	}
 
 	@Override
