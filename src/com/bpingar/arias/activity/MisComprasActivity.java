@@ -61,14 +61,15 @@ public class MisComprasActivity extends MenuActivity implements OnClickListener 
 		final SharedPreferences general = PreferenceManager
 				.getDefaultSharedPreferences(getBaseContext());
 
-		final boolean mostrar_saludo = general.getBoolean(
-				getString(R.string.saludo), false);
-		if (mostrar_saludo) {
+		final boolean mostrar_saludo = general.getBoolean("saludo_checkbox",
+				false);
+		if (mostrar_saludo && !((Arias) getApplication()).isSaludoMostrado()) {
 			Toast.makeText(
 					this,
-					general.getString(getString(R.string.texto_saludo),
-							getString(R.string.saludo_defecto)),
+					general.getString("saludo_texto",
+							getString(R.string.pref_default_texto_saludo)),
 					Toast.LENGTH_LONG).show();
+			((Arias) getApplication()).setSaludoMostrado(true);
 		}
 	}
 

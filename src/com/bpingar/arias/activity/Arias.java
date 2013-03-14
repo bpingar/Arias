@@ -11,6 +11,7 @@ public class Arias extends Application {
 	public static final String COMPRA = "compra";
 
 	private Usuario usuario = new Usuario();
+	private boolean saludoMostrado = false;
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -18,5 +19,13 @@ public class Arias extends Application {
 
 	public void setUsuario(final Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public boolean isSaludoMostrado() {
+		return saludoMostrado;
+	}
+
+	public void setSaludoMostrado(final boolean saludoMostrado) {
+		this.saludoMostrado = saludoMostrado;
 	}
 }

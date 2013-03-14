@@ -33,13 +33,6 @@
     <string name="eliminar_usuario_no_posible_tiene_compras">No es posible borrar el usuario. Primero debe borrar sus compras.</string>
     <string name="eliminar_usuario_ok">Usuario %s eliminado correctamente</string>
     <string name="eliminar_compra_ok">Compra eliminada correctamente</string>
-    <string name="saludo_inicial">Saludo inicial</string>
-    <string name="texto_saludo_inicial">Texto saludo inicial</string>
-    <string name="mostrar_saludo_inicial">Mostrar un mensaje de saludo al entrar en la aplicación</string>
-    <string name="introducir_saludo_inicial">Introducir el texto del mensaje de saludo a mostrar</string>
-    <string name="saludo_defecto">Bienvenido a la aplicación Mis compras de Arias!!!!</string>
-    <string name="texto_saludo">texto_saludo</string>
-    <string name="saludo">saludo</string>
     <string name="hola">Hola</string>
 
 </resources>

@@ -8,6 +8,10 @@
 package com.bpingar.arias;
 
 public final class R {
+    public static final class array {
+        public static final int pref_sinc_frecuencia_titles=0x7f090000;
+        public static final int pref_sinc_frecuencia_values=0x7f090001;
+    }
     public static final class attr {
     }
     public static final class color {
@@ -28,21 +32,21 @@ public final class R {
         public static final int logo_arias=0x7f020001;
     }
     public static final class id {
-        public static final int anadirCompra=0x7f0b0002;
-        public static final int establecer_usuario=0x7f0b0001;
-        public static final int fecha_compra=0x7f0b0005;
-        public static final int guardar_compra=0x7f0b0006;
-        public static final int id_usuario=0x7f0b0008;
-        public static final int menu_arias=0x7f0b000e;
-        public static final int menu_mis_compras=0x7f0b000a;
-        public static final int menu_preferencias=0x7f0b000d;
-        public static final int menu_usuario=0x7f0b000b;
-        public static final int menu_usuarios=0x7f0b000c;
-        public static final int nombre_producto=0x7f0b0007;
-        public static final int nombre_usuario=0x7f0b0009;
-        public static final int numero_unidades=0x7f0b0004;
-        public static final int producto=0x7f0b0003;
-        public static final int usuario=0x7f0b0000;
+        public static final int anadirCompra=0x7f0c0002;
+        public static final int establecer_usuario=0x7f0c0001;
+        public static final int fecha_compra=0x7f0c0005;
+        public static final int guardar_compra=0x7f0c0006;
+        public static final int id_usuario=0x7f0c0008;
+        public static final int menu_arias=0x7f0c000e;
+        public static final int menu_mis_compras=0x7f0c000a;
+        public static final int menu_preferencias=0x7f0c000d;
+        public static final int menu_usuario=0x7f0c000b;
+        public static final int menu_usuarios=0x7f0c000c;
+        public static final int nombre_producto=0x7f0c0007;
+        public static final int nombre_usuario=0x7f0c0009;
+        public static final int numero_unidades=0x7f0c0004;
+        public static final int producto=0x7f0c0003;
+        public static final int usuario=0x7f0c0000;
     }
     public static final class layout {
         public static final int activity_establecer_usuario=0x7f030000;
@@ -54,7 +58,7 @@ public final class R {
         public static final int usuario_item=0x7f030006;
     }
     public static final class menu {
-        public static final int menu_base=0x7f0a0000;
+        public static final int menu_base=0x7f0b0000;
     }
     public static final class raw {
         public static final int ormlite_config=0x7f050000;
@@ -77,27 +81,41 @@ public final class R {
         public static final int fijar_usuario=0x7f080017;
         public static final int guardar_compra=0x7f08000b;
         public static final int hello_world=0x7f080013;
-        public static final int hola=0x7f080027;
-        public static final int introducir_saludo_inicial=0x7f080023;
+        public static final int hola=0x7f080020;
         public static final int menu_establecer_usuario=0x7f080004;
         public static final int menu_informacion_arias=0x7f080003;
         public static final int menu_mis_compras=0x7f080006;
         public static final int menu_preferencias=0x7f080002;
         public static final int menu_settings=0x7f080019;
         public static final int menu_usuarios=0x7f080005;
-        public static final int mostrar_saludo_inicial=0x7f080022;
         public static final int nueva_compra_guardada_error=0x7f08000f;
         public static final int nueva_compra_usuario=0x7f080010;
         public static final int numero_unidades=0x7f080009;
+        public static final int pref_default_texto_saludo=0x7f080026;
+        public static final int pref_description_saludo=0x7f080024;
+        /**  Example settings for Data & Sync 
+         */
+        public static final int pref_header_data_sync=0x7f080027;
+        /**  Strings related to Settings 
+ Example General settings 
+         */
+        public static final int pref_header_general=0x7f080022;
+        /**  Example settings for Notifications 
+         */
+        public static final int pref_header_notificaciones=0x7f08002a;
+        public static final int pref_ringtone_silent=0x7f08002d;
+        public static final int pref_title_notificaciones_nuevos_productos=0x7f08002b;
+        public static final int pref_title_ringtone=0x7f08002c;
+        public static final int pref_title_saludo=0x7f080023;
+        public static final int pref_title_sinc_frecuencia=0x7f080028;
+        public static final int pref_title_system_sync_settings=0x7f080029;
+        public static final int pref_title_texto_saludo=0x7f080025;
+        public static final int pref_title_vibracion=0x7f08002e;
         public static final int producto=0x7f080008;
-        public static final int saludo=0x7f080026;
-        public static final int saludo_defecto=0x7f080024;
-        public static final int saludo_inicial=0x7f080020;
-        public static final int texto_saludo=0x7f080025;
-        public static final int texto_saludo_inicial=0x7f080021;
         public static final int title_activity_informacion_arias=0x7f080014;
         public static final int title_activity_nueva_compra=0x7f080007;
         public static final int title_activity_preferencias=0x7f080015;
+        public static final int title_activity_settings=0x7f080021;
         public static final int title_activity_usuarios=0x7f08001a;
         public static final int usuario=0x7f080018;
     }
@@ -123,11 +141,11 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f0a0001;
     }
     public static final class xml {
         public static final int preferencias=0x7f040000;

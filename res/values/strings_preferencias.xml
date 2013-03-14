@@ -1,0 +1,45 @@
+<resources>
+
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_saludo">Saludo inicial</string>
+    <string name="pref_description_saludo">Mostrar un mensaje de saludo al entrar en la aplicación</string>
+    <string name="pref_title_texto_saludo">Texto saludo inicial</string>
+    <string name="pref_default_texto_saludo">Bienvenido a la aplicación Mis compras de Arias!!!!</string>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="pref_title_sinc_frecuencia">Frecuencia de sincronizacion</string>
+
+    <string-array name="pref_sinc_frecuencia_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sinc_frecuencia_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">Preferencias de sincronizacion del sistema</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notificaciones">Notificaciones</string>
+    <string name="pref_title_notificaciones_nuevos_productos">Notificaciones de nuevos productos</string>
+    <string name="pref_title_ringtone">Tono de timbre</string>
+    <string name="pref_ringtone_silent">Silent</string>
+    <string name="pref_title_vibracion">Vibracion</string>
+
+</resources>

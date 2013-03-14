@@ -2,19 +2,51 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="general" >
 
-    <PreferenceCategory android:title="Opciones Generales" >
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="@string/saludo"
-            android:summary="@string/mostrar_saludo_inicial"
-            android:title="@string/saludo_inicial" >
-        </CheckBoxPreference>
+    <PreferenceCategory android:title="@string/pref_header_general" >
+	    <CheckBoxPreference
+	        android:defaultValue="false"
+	        android:key="saludo_checkbox"
+	        android:summary="@string/pref_description_saludo"
+	        android:title="@string/pref_title_saludo" >
+	    </CheckBoxPreference>
+	    <EditTextPreference
+	        android:defaultValue="@string/pref_default_texto_saludo"
+	        android:dependency="saludo_checkbox"
+	        android:key="saludo_texto"
+	        android:selectAllOnFocus="true"
+	        android:title="@string/pref_title_texto_saludo" />
+    </PreferenceCategory>
 
-        <EditTextPreference
-            android:dependency="@string/saludo"
-            android:key="@string/texto_saludo"
-            android:summary="@string/introducir_saludo_inicial"
-            android:title="@string/texto_saludo_inicial" />
+    <PreferenceCategory android:title="@string/pref_header_notificaciones" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="notificaciones_nuevos_productos"
+            android:title="@string/pref_title_notificaciones_nuevos_productos" />
+        <RingtonePreference
+            android:defaultValue="content://settings/system/notification_sound"
+            android:dependency="notificaciones_nuevos_productos"
+            android:key="notificaciones_nuevos_productos_ringtone"
+            android:ringtoneType="notification"
+            android:title="@string/pref_title_ringtone" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="notificaciones_nuevos_productos"
+            android:key="notificaciones_nuevos_productos_vibracion"
+            android:title="@string/pref_title_vibracion" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/pref_header_data_sync" >
+        <ListPreference
+            android:defaultValue="180"
+            android:entries="@array/pref_sinc_frecuencia_titles"
+            android:entryValues="@array/pref_sinc_frecuencia_values"
+            android:key="frecuencia_sincronizacion"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_sinc_frecuencia" />
+        <Preference android:title="@string/pref_title_system_sync_settings" >
+            <intent android:action="android.settings.SYNC_SETTINGS" />
+        </Preference>
     </PreferenceCategory>
 
 </PreferenceScreen>
