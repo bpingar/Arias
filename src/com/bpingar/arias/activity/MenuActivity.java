@@ -26,6 +26,10 @@ public class MenuActivity extends OrmLiteBaseActivity<DatabaseHelper> {
 			startActivity(new Intent(this, MisComprasActivity.class));
 			break;
 
+		case R.id.menu_marcas:
+			startActivity(new Intent(this, ItemListActivity.class));
+			break;
+
 		case R.id.menu_usuario:
 			startActivityForResult(new Intent(this,
 					EstablecerUsuarioActivity.class), _USUARIO_REGISTRADO);

@@ -8,6 +8,7 @@
     <string name="menu_establecer_usuario">Establecer Usuario</string>
     <string name="menu_usuarios">Gestión Usuarios</string>
     <string name="menu_mis_compras">Mis Compras</string>
+    <string name="menu_marcas">Marcas</string>
     <string name="title_activity_nueva_compra">NuevaCompraActivity</string>
     <string name="producto">Producto:</string>
     <string name="numero_unidades">Nº de unidades:</string>
@@ -34,5 +35,7 @@
     <string name="eliminar_usuario_ok">Usuario %s eliminado correctamente</string>
     <string name="eliminar_compra_ok">Compra eliminada correctamente</string>
     <string name="hola">Hola</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_item_list">Items</string>
 
 </resources>
