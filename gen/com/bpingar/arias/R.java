@@ -36,18 +36,20 @@ public final class R {
         public static final int establecer_usuario=0x7f0c0001;
         public static final int fecha_compra=0x7f0c0007;
         public static final int guardar_compra=0x7f0c0008;
-        public static final int id_usuario=0x7f0c000b;
-        public static final int item_detail=0x7f0c000a;
+        public static final int id_usuario=0x7f0c000d;
+        public static final int imagen_marca=0x7f0c000a;
+        public static final int item_descripcion=0x7f0c000c;
         public static final int item_detail_container=0x7f0c0002;
         public static final int item_list=0x7f0c0003;
-        public static final int menu_arias=0x7f0c0012;
-        public static final int menu_marcas=0x7f0c000e;
-        public static final int menu_mis_compras=0x7f0c000d;
-        public static final int menu_preferencias=0x7f0c0011;
-        public static final int menu_usuario=0x7f0c000f;
-        public static final int menu_usuarios=0x7f0c0010;
+        public static final int item_titulo=0x7f0c000b;
+        public static final int menu_arias=0x7f0c0014;
+        public static final int menu_marcas=0x7f0c0010;
+        public static final int menu_mis_compras=0x7f0c000f;
+        public static final int menu_preferencias=0x7f0c0013;
+        public static final int menu_usuario=0x7f0c0011;
+        public static final int menu_usuarios=0x7f0c0012;
         public static final int nombre_producto=0x7f0c0009;
-        public static final int nombre_usuario=0x7f0c000c;
+        public static final int nombre_usuario=0x7f0c000e;
         public static final int numero_unidades=0x7f0c0006;
         public static final int producto=0x7f0c0005;
         public static final int usuario=0x7f0c0000;
@@ -56,14 +58,6 @@ public final class R {
         public static final int activity_establecer_usuario=0x7f030000;
         public static final int activity_informacion_arias=0x7f030001;
         public static final int activity_item_detail=0x7f030002;
-        /** 
-    Layout alias to replace the single-pane version of the layout with a
-    two-pane version on Large screens.
-
-    For more on layout aliases, see:
-    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
-    
-         */
         public static final int activity_item_list=0x7f030003;
         public static final int activity_item_twopane=0x7f030004;
         public static final int activity_mis_compras=0x7f030005;
@@ -151,6 +145,7 @@ public final class R {
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
+
     
  API 11 theme customizations can go here. 
 
