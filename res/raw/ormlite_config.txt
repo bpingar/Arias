@@ -1,5 +1,5 @@
 #
-# generated on 2013/03/10 02:02:08
+# generated on 2013/04/07 05:53:21
 #
 # --table-start--
 dataClass=com.bpingar.arias.model.Compra
@@ -34,6 +34,26 @@ generatedId=true
 # --field-end--
 # --field-start--
 fieldName=nombreUsuario
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.bpingar.arias.model.Marca
+tableName=marca
+# --table-fields-start--
+# --field-start--
+fieldName=id
+id=true
+# --field-end--
+# --field-start--
+fieldName=activo
+# --field-end--
+# --field-start--
+fieldName=marca
+# --field-end--
+# --field-start--
+fieldName=descripcion
 # --field-end--
 # --table-fields-end--
 # --table-end--

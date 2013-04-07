@@ -1,5 +1,7 @@
 package com.bpingar.arias.activity;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -7,14 +9,16 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.bpingar.arias.database.DatabaseHelper;
 import com.bpingar.arias.model.Marca;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 public class ItemListFragment extends ListFragment {
 
 	private static final String STATE_ACTIVATED_POSITION = "activated_position";
-
+	private DatabaseHelper databaseHelper;
 	private Callbacks mCallbacks;
-
+	private List<Marca> marcas;
 	private int mActivatedPosition = ListView.INVALID_POSITION;
 
 	public interface Callbacks {
@@ -28,9 +32,14 @@ public class ItemListFragment extends ListFragment {
 	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// TODO: replace with a real list adapter.
+		if (databaseHelper == null) {
+			databaseHelper = OpenHelperManager.getHelper(getActivity()
+					.getApplicationContext(), DatabaseHelper.class);
+		}
+
+		marcas = databaseHelper.getMarcaDAO().queryForAll();
 		setListAdapter(new ArrayAdapter<Marca>(getActivity(),
-				android.R.layout.simple_list_item_activated_1, Marca.ITEMS));
+				android.R.layout.simple_list_item_activated_1, marcas));
 	}
 
 	@Override
@@ -61,7 +70,7 @@ public class ItemListFragment extends ListFragment {
 			final int position, final long id) {
 		super.onListItemClick(listView, view, position, id);
 
-		mCallbacks.onItemSelected(Marca.ITEMS.get(position).getId());
+		mCallbacks.onItemSelected(marcas.get(position).getId());
 	}
 
 	@Override

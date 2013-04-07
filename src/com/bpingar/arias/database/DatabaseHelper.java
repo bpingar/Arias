@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.bpingar.arias.R;
 import com.bpingar.arias.model.Compra;
+import com.bpingar.arias.model.Marca;
 import com.bpingar.arias.model.Usuario;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
@@ -17,10 +18,11 @@ import com.j256.ormlite.table.TableUtils;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	private static final String DATABASE_NAME = "Arias.db";
-	private static final int DATABASE_VERSION = 5;
+	private static final int DATABASE_VERSION = 10;
 
 	private RuntimeExceptionDao<Compra, Integer> compraDAO = null;
 	private RuntimeExceptionDao<Usuario, Integer> usuarioDAO = null;
+	private RuntimeExceptionDao<Marca, Integer> marcaDAO = null;
 
 	public DatabaseHelper(final Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION,
@@ -33,6 +35,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try {
 			TableUtils.createTable(connectionSource, Compra.class);
 			TableUtils.createTable(connectionSource, Usuario.class);
+			TableUtils.createTable(connectionSource, Marca.class);
 		} catch (final SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
 			throw new RuntimeException(e);
@@ -46,6 +49,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try {
 			TableUtils.dropTable(connectionSource, Compra.class, true);
 			TableUtils.dropTable(connectionSource, Usuario.class, true);
+			TableUtils.dropTable(connectionSource, Marca.class, true);
 			onCreate(db, connectionSource);
 		} catch (final java.sql.SQLException e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't drop databases", e);
@@ -67,10 +71,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		return usuarioDAO;
 	}
 
+	public RuntimeExceptionDao<Marca, Integer> getMarcaDAO() {
+		if (marcaDAO == null) {
+			marcaDAO = getRuntimeExceptionDao(Marca.class);
+		}
+		return marcaDAO;
+	}
+
 	@Override
 	public void close() {
 		super.close();
 		compraDAO = null;
 		usuarioDAO = null;
+		marcaDAO = null;
 	}
 }
